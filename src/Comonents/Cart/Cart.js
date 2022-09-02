@@ -1,10 +1,11 @@
+
 import React from 'react';
 import './Cart.css';
 
 const Cart = (props) => {
-    console.log(props.cart.name);
+    // console.log(props.cart.name);
     const cart = props.cart;
-    const total = cart.reduce( (total,pdr)=> total+pdr.price,0)
+    const total = cart.reduce( (total,pdr)=> total+pdr.price * pdr.quantity,0)
     let shipCost = 0;
     if(total>200){
         shipCost = 0;
@@ -27,7 +28,9 @@ const Cart = (props) => {
             <h4><small>Tax:{" "+tax}</small></h4>
             <p><small>Shipping cost: {" "+shipCost}</small></p>
             <h3 className='red'>Grand total:{" "+granTotal}</h3>
-
+             {
+                props.children
+             }
         </div>
     );
 };
