@@ -8,6 +8,7 @@ import fakeData from "../../fakeData/products.json";
 import Reveiwitem from "../Reviewitem/Reveiwitem";
 import Cart from "../Cart/Cart";
 import happyImage from "../../images/giphy.gif";
+import { useNavigate } from "react-router-dom";
 
 const Review = () => {
   const [cart, setCart] = useState([]);
@@ -71,10 +72,9 @@ const Review = () => {
     removeFromDatabaseCart(idName);
   };
   const [orderplaced, setOrderplaced] = useState(false);
-  const handelOrderPlace = () => {
-    setCart([]);
-    setOrderplaced(true);
-    processOrder();
+  const navigation = useNavigate();
+  const handelProceedOrder = () => {
+    navigation('/shipment')
   };
   let thanksImage;
   if (orderplaced) {
@@ -97,8 +97,8 @@ const Review = () => {
       </div>
       <div className="cart-container">
         <Cart cart={cart}>
-          <button onClick={handelOrderPlace} className="add-cart">
-            Place order
+          <button onClick={handelProceedOrder} className="add-cart">
+            Porceed Checkout
           </button>
         </Cart>
       </div>
